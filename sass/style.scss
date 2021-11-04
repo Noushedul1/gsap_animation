@@ -1,0 +1,17 @@
+.one{
+    height: 100px;
+    width: 100px;
+    background: blue;
+}
+.bounce{
+    @extend .two;
+    margin: 0 auto;
+}
+.box1{
+    @extend .two;
+    background: green;
+}
+.box2{
+    @extend .two;
+    background: red;
+}

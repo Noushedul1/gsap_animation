@@ -1,0 +1,23 @@
+.one, .two, .bounce, .box1, .box2 {
+  height: 100px;
+  width: 100px;
+  background: blue;
+}
+
+.two, .bounce, .box1, .box2 {
+  background: orange;
+  margin: 10px;
+}
+
+.bounce {
+  margin: 0 auto;
+}
+
+.box1 {
+  background: green;
+}
+
+.box2 {
+  background: red;
+}
+/*# sourceMappingURL=style.css.map */

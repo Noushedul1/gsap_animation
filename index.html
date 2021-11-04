@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gsap animation</title>
+    <link rel="stylesheet" href="./sass/style.css">
+</head>
+<body>
+    <p class="one">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+    </p>
+    <p class="two">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+    </p>
+    <div class="bounce">
+
+    </div>
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div id="msg"></div>
+
+    <div id="quote">SplitText makes it easy to break apart the text in an HTML element so that each character, word, and/or line is wrapped in its own div tag.</div>
+    <button id="animate">animate</button>
+
+
+
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/gsap-latest-beta.min.js"></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/SplitText3.min.js"></script>
+    <script>
+        gsap.from('.one',{duration: 2,delay: 1,x: 100, y: 100,skew: 45, rotation: 100});
+        gsap.from('.bounce',{duration: 2, delay: 1, x: 200, ease: 'sign'});
+
+        var output = document.getElementById('msg');
+
+        gsap.to('.box1',{duration: 2, x: 300,
+        onStart: showMessage,
+        onStartParams: ['the green is started'],
+        onComplete: showMessage,
+        onCompleteParams: ['the green is end'],
+        delay: 1
+        });
+
+        gsap.to('.box2',{duration: 2, x: 300,
+        onStart: showMessage,
+        onStartParams: ['the red is started'],
+        onComplete: showMessage,
+        onCompleteParams: ['the red is ended'],
+        delay: 5
+        });
+        function showMessage(message){
+            output.innerHTML += message + "<br>";
+        }
+
+        // gsap.registerPlugin(SplitText);
+
+        var tl = gsap.timeline(),
+        mySplitText = new SplitText("#quote", { type: "words,chars" }),
+        chars = mySplitText.chars; //an array of all the divs that wrap each character
+
+        gsap.set("#quote", { perspective: 400 });
+
+        console.log(chars);
+
+        tl.from(chars, {
+        duration: 0.8,
+        opacity: 0,
+        scale: 0,
+        y: 80,
+        rotationX: 180,
+        transformOrigin: "0% 50% -50",
+        ease: "back",
+        stagger: 0.01
+        });
+
+        document.getElementById("animate").onclick = function () {
+        tl.restart();
+        };
+    </script>
+</body>
+</html>
